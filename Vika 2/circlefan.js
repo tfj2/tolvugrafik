@@ -9,7 +9,7 @@ var gl;
 
 // numCirclePoints er fj�ldi punkta � hringnum
 // Heildarfj�ldi punkta er tveimur meiri (mi�punktur + fyrsti punktur kemur tvisvar)
-var numCirclePoints = 20;       
+var numCirclePoints = 21;       
 
 var radius = 0.4;
 var center = vec2(0, 0);
@@ -53,8 +53,12 @@ function createCirclePoints( cent, rad, k )
     var dAngle = 2*Math.PI/k;
     for( i=k; i>=0; i-- ) {
     	a = i*dAngle;
-    	var p = vec3(0, rad*Math.sin(a) + cent[0], rad*Math.cos(a) + cent[1] );
+	b = (i+1)*dAngle;
+    	var p = vec2( rad*Math.sin(a) + cent[0], rad*Math.cos(a) + cent[1]);
+	var d = vec2( rad*Math.sin(b) + cent[0], rad*Math.cos(b) + cent[1]);	
+	points.push(center)
     	points.push(p);
+	points.push(d);
     }
 }
 
@@ -63,7 +67,7 @@ function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
     
     // Draw circle using Triangle Fan
-    gl.drawArrays( gl.TRIANGLES, 0, numCirclePoints );
+    gl.drawArrays( gl.TRIANGLES, 0, 3*21 );
 
     window.requestAnimFrame(render);
 }
