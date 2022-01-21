@@ -38,7 +38,7 @@ window.onload = function init() {
     gl.enableVertexAttribArray(vPosition);
     
     // Me�h�ndlun � m�sarsmellum
-    canvas.addEventListener("mousedown", function(e){
+    canvas.addEventListener("click", function(e){
 
         gl.bindBuffer( gl.ARRAY_BUFFER, vBuffer);
         
@@ -47,21 +47,21 @@ window.onload = function init() {
 	var offset = 0.025;
         var tr1 = vec2(t[0], t[1]+offset);
 	var tr2 = vec2(t[0]-offset, t[1]-offset);
-	var tr3 = vec2(t[0]+offset, t[1]);
+	var tr3 = vec2(t[0]+offset, t[1]-offset);
 	points = [tr1, tr2, tr3];
         // F�ra �essi hnit yfir � graf�kminni, � r�ttan sta�
         gl.bufferSubData(gl.ARRAY_BUFFER, 8*index, flatten(points));
 
-        index++;
+        index = index+3;
     } );
+	canvas.addEventListener("contextmenu", function(e){
+	   index = 0;
+});
+
 
     render();
 }
 
-	canvas.addEventListener("contextmenu", function(e){
-	   gl.clear( gl.COLOR_BUFFER_BIT );	
-
-});
 
 
 function render() {
