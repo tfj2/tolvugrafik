@@ -70,7 +70,7 @@ function render() {
     gl.bufferSubData(gl.ARRAY_BUFFER, 0, i);
     
     // Draw circle using Triangle Fan
-    gl.drawArrays( gl.TRIANGLE_FAN, 0, numCirclePoints+2 );
+    gl.drawArrays( gl.TRIANGLE_FAN, 0, points.length );
     points = [];
     //window.requestAnimFrame(render);
 }
